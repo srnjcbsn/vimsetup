@@ -18,7 +18,6 @@ Plugin 'scrooloose/nerdcommenter'
 " Color schemes
 Plugin 'tomasr/molokai'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
