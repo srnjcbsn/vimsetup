@@ -23,6 +23,11 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'lukerandall/haskellmode-vim'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'danro/rename.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'raichoo/haskell-vim'
+Plugin 'bitc/vim-hdevtools'
 
 " Color schemes
 Plugin 'tomasr/molokai'
@@ -33,7 +38,7 @@ Plugin 'flazz/vim-colorschemes'
 call vundle#end()            " required
 filetype plugin indent on
 
-colorscheme wombat
+colorscheme Tomorrow-Night
 set backspace=indent,eol,start
 
 syntax on
@@ -55,6 +60,8 @@ set smartcase
 set incsearch
 set showmatch
 set hlsearch
+set expandtab
+set colorcolumn=80
 
 " jump to tag
 :nnoremap <c-j> <c-]>
@@ -71,6 +78,9 @@ set wildignore+=*.swp
 
 " latex-specific ignores
 set wildignore+=*.fls,*.log,*.pdf,*.aux,*.out,*.fdb_latexmk,*.toc,*.loa,*.dvi,*.synctex.gz
+
+" haskell-specific ignores
+set wildignore+=*.hi,*.o
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
@@ -108,6 +118,18 @@ let g:airline#extensions#default#layout = [
 au BufEnter *.hs compiler ghc
 let g:haddock_browser = "/usr/bin/google-chrome"
 let g:ghc = "/usr/bin/ghc"
+
+" syntastic
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol = "!"
+let g:syntastic_warning_symbol = "W"
+let g:syntastic_style_error_symbol "!"
+let g:syntastic_style_warning_symbol = "W"
+
+" Reload
+map <silent> tu :call GHC_BrowseAll()<CR>
+" Type Lookup
+map <silent> tw :call GHC_ShowType(1)<CR>
 
 " tagbar
 nnoremap <leader>t = :TagbarToggle<CR>
