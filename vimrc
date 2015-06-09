@@ -1,4 +1,4 @@
-set shell=/bin/bash
+set shell=bash
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -21,13 +21,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
-Plugin 'lukerandall/haskellmode-vim'
+" Plugin 'lukerandall/haskellmode-vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'danro/rename.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'raichoo/haskell-vim'
 Plugin 'bitc/vim-hdevtools'
+Plugin 'nbouscal/vim-stylish-haskell'
 
 " Color schemes
 Plugin 'tomasr/molokai'
@@ -115,15 +116,14 @@ let g:airline#extensions#default#layout = [
       \ ]
 
 " haskellmode
-au BufEnter *.hs compiler ghc
-let g:haddock_browser = "/usr/bin/google-chrome"
-let g:ghc = "/usr/bin/ghc"
+" au BufEnter *.hs compiler ghc
+" let g:haddock_browser = "/usr/bin/google-chrome"
+" let g:ghc = "/usr/bin/ghc"
 
 " syntastic
 let g:syntastic_enable_signs = 1
 let g:syntastic_error_symbol = "!"
 let g:syntastic_warning_symbol = "W"
-let g:syntastic_style_error_symbol "!"
 let g:syntastic_style_warning_symbol = "W"
 
 " Reload
