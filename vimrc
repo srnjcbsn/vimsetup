@@ -28,6 +28,7 @@ Plugin 'danro/rename.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'raichoo/haskell-vim'
 Plugin 'bitc/vim-hdevtools'
+Plugin 'nbouscal/vim-stylish-haskell'
 
 " Color schemes
 Plugin 'tomasr/molokai'
@@ -80,7 +81,7 @@ set wildignore+=*.swp
 set wildignore+=*.fls,*.log,*.pdf,*.aux,*.out,*.fdb_latexmk,*.toc,*.loa,*.dvi,*.synctex.gz
 
 " haskell-specific ignores
-set wildignore+=*.hi,*.o
+set wildignore+=*.hi,*.o,*.dyn_hi,*.p_hi,*.dyn_o,*.p_o
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
