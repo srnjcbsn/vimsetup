@@ -29,6 +29,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'raichoo/haskell-vim'
 Plugin 'bitc/vim-hdevtools'
 Plugin 'nbouscal/vim-stylish-haskell'
+Plugin 'justinmk/vim-sneak'
 
 " Color schemes
 Plugin 'tomasr/molokai'
@@ -69,6 +70,9 @@ set colorcolumn=80
 
 " Automatically cd to path of file
 autocmd BufEnter * silent! lcd %:p:h
+
+" don't show 80-char column in latex mode
+au FileType tex set colorcolumn=0
 
 " Do not step over display lines by default
 nnoremap j gj
