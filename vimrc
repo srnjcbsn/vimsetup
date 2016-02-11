@@ -21,7 +21,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
-" Plugin 'lukerandall/haskellmode-vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'danro/rename.vim'
@@ -46,6 +45,7 @@ set backspace=indent,eol,start
 syntax on
 let mapleader = ","
 
+set noswapfile
 set wrap linebreak nolist
 set autoindent
 set shiftwidth=4
@@ -91,6 +91,10 @@ set wildignore+=*.hi,*.o,*.dyn_hi,*.p_hi,*.dyn_o,*.p_o
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 nnoremap <c-b> :CtrlPBuffer<CR>
+
+" NERDTree
+map <leader>f :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 
 " remove highlighting
 nnoremap <leader><space> :noh<cr>
