@@ -14,7 +14,6 @@ Plugin 'gmarik/Vundle.vim'
 " Plugins
 Plugin 'kien/ctrlp.vim'
 Plugin 'sjl/gundo.vim'
-Plugin 'vim-latex/vim-latex'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
@@ -29,17 +28,21 @@ Plugin 'raichoo/haskell-vim'
 Plugin 'bitc/vim-hdevtools'
 Plugin 'nbouscal/vim-stylish-haskell'
 Plugin 'justinmk/vim-sneak'
+Plugin 'LnL7/vim-nix'
 
 " Color schemes
 Plugin 'tomasr/molokai'
 Plugin 'chriskempson/base16-vim'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'morhetz/gruvbox'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on
 
-colorscheme Tomorrow-Night
+colorscheme gruvbox
+set background=dark
+
 set backspace=indent,eol,start
 
 syntax on
@@ -70,9 +73,6 @@ set colorcolumn=80
 
 " Automatically cd to path of file
 autocmd BufEnter * silent! lcd %:p:h
-
-" don't show 80-char column in latex mode
-au FileType tex set colorcolumn=0
 
 " Do not step over display lines by default
 nnoremap j gj
@@ -106,14 +106,7 @@ nnoremap <leader>ø :set list!<cr>
 " undo tree
 nnoremap <leader>u :GundoToggle<cr>
 
-" latex-suite stuff:
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor = "latex"
-let g:Tex_DefaultTargetFormat = "pdf"
-set runtimepath+=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
-
 " airline
-let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ' '
@@ -122,11 +115,6 @@ let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
       \ [ 'x', 'z', 'warning' ]
       \ ]
-
-" haskellmode
-" au BufEnter *.hs compiler ghc
-" let g:haddock_browser = "/usr/bin/google-chrome"
-" let g:ghc = "/usr/bin/ghc"
 
 " syntastic
 let g:syntastic_enable_signs = 1
