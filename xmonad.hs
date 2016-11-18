@@ -1,15 +1,21 @@
-import XMonad
-import XMonad.Hooks.ManageDocks
-import XMonad.Config.Desktop
-import XMonad.Hooks.DynamicLog
-import XMonad.Layout.Tabbed
-import XMonad.Util.Themes
+import           XMonad
+import           XMonad.Config.Desktop
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.SetWMName
+import           XMonad.Layout.Tabbed
+import           XMonad.Util.Themes
+import XMonad.Util.Run (spawnPipe, hPutStrLn)
 
+-- main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 main = do
-  xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
+    xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
+    xmonad $ myConfig xmproc
 
 myBar = "xmobar"
-myPP = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" }
+myPP xmproc = xmobarPP { ppOutput = hPutStrLn xmproc
+                       , ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" 
+                       }
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
 myLayoutHook =   avoidStruts
@@ -20,9 +26,11 @@ myLayoutHook =   avoidStruts
                     ratio   = 1 / 2
                     delta   = 3 / 100
 
-myConfig = desktopConfig
-    { terminal   = "urxvt"
-    , modMask    = mod1Mask
-    , layoutHook = myLayoutHook
-    , manageHook = manageHook defaultConfig <+> manageDocks
+myConfig xmproc = desktopConfig
+    { terminal    = "urxvt"
+    , modMask     = mod1Mask
+    , layoutHook  = myLayoutHook
+    , manageHook  = manageHook defaultConfig <+> manageDocks
+    , startupHook = setWMName "LG3D"
+    , logHook     = dynamicLogWithPP $ myPP xmproc
     }
