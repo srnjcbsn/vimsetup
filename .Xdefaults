@@ -1,11 +1,14 @@
 ### URXVT ###
 
-URxvt.scrollstyle:	plain
-URxvt.secondaryScroll:  true  
-
-URxvt.font:		xft:Fira Mono Medium for Powerline:pixelsize=12
-/* URxvt.boldFont:		xft:Fira Mono for Powerline:pixelsize=12:style=Bold */
-URxvt.letterSpace: -1
+URxvt.scrollstyle:       plain
+URxvt.font:              xft:Consolas:pixelsize=16
+URxvt.letterSpace:       -1
+URxvt.saveLines:         100000
+URxvt.scrollBar_right:   true
+URxvt.scrollColor:       #1d2021
+URxvt.urgentOnBell:      true
+URxvt.scrollTtyOutput:   false
+URxvt.scrollTtyKeypress: true
 
 !!! Gruvbox !!!
 ! hard contrast: *background: #1d2021
@@ -37,32 +40,3 @@ URxvt.letterSpace: -1
 *color7:  #a89984
 *color15: #ebdbb2
 
-!!! rdark !!!
-!
-! URxvt.background:	#1E2426
-! URxvt.foreground:	#D3D7CF
-!
-! ! Black:
-! URxvt.color0:	#000000
-! URxvt.color8:	#555753
-! ! Red:
-! URxvt.color1:	#8B2929
-! URxvt.color9:	#EF2929
-! ! Green:
-! URxvt.color2:	#52A302
-! URxvt.color10:	#8ae234
-! ! Yellow:
-! URxvt.color3:	#FCAF3E
-! URxvt.color11:	#FFE13E
-! ! Blue:
-! URxvt.color4:	#3465A4
-! URxvt.color12:	#729FCF
-! ! Magenta:
-! URxvt.color5:	#AA00AA
-! URxvt.color13:	#8B008B
-! ! Cyan:
-! URxvt.color6:	#008B8B
-! URxvt.color14:	#00FFFF
-! ! White:
-! URxvt.color7:	#BABDB6
-! URxvt.color15:	#EEEEEC

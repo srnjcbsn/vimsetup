@@ -5,7 +5,8 @@
    dotspacemacs-distribution 'spacemacs
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
-   '(auto-completion
+   '(
+     htmlauto-completion
      ranger
      gtags
      colors
@@ -18,7 +19,7 @@
      haskell
      python
      nixos
-     dockerfile
+     docker
      yaml
      elixir
      elm
@@ -39,16 +40,16 @@
    dotspacemacs-startup-banner 'nil
    dotspacemacs-startup-lists '(recents projects bookmarks)
    dotspacemacs-startup-recent-list-size 5
-   dotspacemacs-themes '(spacemacs-light
-                         gruvbox
+   dotspacemacs-themes '(gruvbox
+                         spacemacs-light
                          spacemacs-dark
                          solarized-light
                          solarized-dark
                          leuven
                          monokai
                          zenburn)
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+   dotspacemacs-default-font '("Consolas"
+                               :size 17
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
