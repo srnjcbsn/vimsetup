@@ -1,7 +1,11 @@
 ### URXVT ###
 
 URxvt.scrollstyle:       plain
-URxvt.font:              xft:Consolas:pixelsize=16
+!! URxvt.font:              xft:Consolas:pixelsize=16
+! URxvt.font:              xft:Hack:pixelsize=14
+! URxvt.font:              xft:Source Code Pro:pixelsize=16
+URxvt.font:              xft:Input Mono Narrow:style=light:pixelsize=16
+! URxvt.font:              xft:Inconsolata-g for Powerline:pixelsize=18
 URxvt.letterSpace:       -1
 URxvt.saveLines:         100000
 URxvt.scrollBar_right:   true
@@ -10,33 +14,100 @@ URxvt.urgentOnBell:      true
 URxvt.scrollTtyOutput:   false
 URxvt.scrollTtyKeypress: true
 
-!!! Gruvbox !!!
-! hard contrast: *background: #1d2021
-*background: #282828
-! soft contrast: *background: #32302f
-*foreground: #ebdbb2
-! Black + DarkGrey
-*color0:  #282828
-*color8:  #928374
-! DarkRed + Red
-*color1:  #cc241d
-*color9:  #fb4934
-! DarkGreen + Green
-*color2:  #98971a
-*color10: #b8bb26
-! DarkYellow + Yellow
-*color3:  #d79921
-*color11: #fabd2f
-! DarkBlue + Blue
-*color4:  #458588
-*color12: #83a598
-! DarkMagenta + Magenta
-*color5:  #b16286
-*color13: #d3869b
-! DarkCyan + Cyan
-*color6:  #689d6a
-*color14: #8ec07c
-! LightGrey + White
-*color7:  #a89984
-*color15: #ebdbb2
+! !!! Gruvbox !!!
+! ! hard contrast: *background: #1d2021
+! *background: #282828
+! ! soft contrast: *background: #32302f
+! *foreground: #ebdbb2
+! ! Black + DarkGrey
+! *color0:  #282828
+! *color8:  #928374
+! ! DarkRed + Red
+! *color1:  #cc241d
+! *color9:  #fb4934
+! ! DarkGreen + Green
+! *color2:  #98971a
+! *color10: #b8bb26
+! ! DarkYellow + Yellow
+! *color3:  #d79921
+! *color11: #fabd2f
+! ! DarkBlue + Blue
+! *color4:  #458588
+! *color12: #83a598
+! ! DarkMagenta + Magenta
+! *color5:  #b16286
+! *color13: #d3869b
+! ! DarkCyan + Cyan
+! *color6:  #689d6a
+! *color14: #8ec07c
+! ! LightGrey + White
+! *color7:  #a89984
+! *color15: #ebdbb2
 
+!!! Material !!!
+! special
+*.foreground:   #eceff1
+*.background:   #263238
+*.cursorColor:  #eceff1
+
+! black
+*.color0:       #263238
+*.color8:       #37474f
+
+! red
+! *.color1:       #ff9800
+! *.color9:       #ffa74d
+*.color1: #FC3841
+*.color9: #FC746D
+
+! green
+*.color2:       #8bc34a
+*.color10:      #9ccc65
+
+! yellow
+*.color3:       #ffc107
+*.color11:      #ffa000
+
+! blue
+*.color4:       #03a9f4
+*.color12:      #81d4fa
+
+! magenta
+*.color5:       #e91e63
+*.color13:      #ad1457
+
+! cyan
+*.color6:       #009688
+*.color14:      #26a69a
+
+! white
+*.color7:       #cfd8dc
+*.color15:      #eceff1
+
+! Alternative material
+! URxvt*foreground: #E7EBED
+! URxvt*background: [90]#1D262A
+! ! black
+! *color0: #435B67
+! *color8: #A1B0B8
+! ! red
+! *color1: #FC3841
+! *color9: #FC746D
+! ! green
+! *color2: #5CF19E
+! *color10: #ADF7BE
+! ! yellow
+! *color3: #FED032
+! *color11: #FEE16C
+! ! blue
+! *color4: #37B6FF
+! *color12: #70CFFF
+! ! magenta
+! *color5: #FC226E
+! *color13: #FC669B
+! ! cyan
+! *color6: #59FFD1
+! *color14: #9AFFE6
+! ! white
+! *color7: #FFFFFF
+! *color15: #FFFFFF
