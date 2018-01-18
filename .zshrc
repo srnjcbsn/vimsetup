@@ -5,6 +5,13 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' max-errors 4
 zstyle :compinstall filename '/home/sja/.zshrc'
 
+setopt inc_append_history
+# Save timestamp and duration of commands in host file
+setopt extended_history
+
+setopt auto_pushd
+setopt pushd_ignore_dups
+
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
@@ -54,6 +61,7 @@ if ! zgen saved; then
     zgen load zsh-users/zsh-syntax-highlighting
     zgen load zsh-users/zsh-autosuggestions
     zgen load zsh-users/zsh-history-substring-search
+    zgen oh-my-zsh plugins/vi-mode
 
     zgen save
 fi
@@ -63,3 +71,8 @@ bindkey '^[[B' history-substring-search-down
 
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=yellow,bold'
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=magenta,bold'
+
+export EDITOR=vim
+export VISUAL=vim
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
