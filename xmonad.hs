@@ -4,6 +4,7 @@ import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.SetWMName
 import           XMonad.Layout.Tabbed
+import           XMonad.Layout.Renamed
 import           XMonad.Hooks.UrgencyHook     ( withUrgencyHook
                                               , NoUrgencyHook (..)
                                               )
@@ -113,12 +114,14 @@ tabbedLayout = defaultTheme
   }
 
 myLayoutHook =    avoidStruts
-              $   tiled
+              $   tall
+              ||| dishes
               ||| tabbed shrinkText tabbedLayout
-              where tiled   = Tall nmaster delta ratio
+              where tall    = Tall nmaster delta ratio
                     nmaster = 1
                     ratio   = 1 / 2
                     delta   = 3 / 100
+                    dishes  = renamed [Replace "Wide"] (Tall 0 delta ratio)
 
 myConfig xmproc = ewmh $ desktopConfig
     { terminal           = "urxvtcd"
