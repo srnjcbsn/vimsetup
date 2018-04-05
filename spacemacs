@@ -6,6 +6,8 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(
+     ivy
+     rust
      erlang
      php
      javascript
@@ -14,7 +16,7 @@
      html
      fsharp
      csv
-     (markdown :variables markdown-live-preview-engine 'vmd)
+     (markdown :variables markdown-live-preview-engine 'eww)
      ranger
      gtags
      colors
@@ -23,7 +25,10 @@
      git
      auto-completion
      theming
+     semantic
+     imenu-list
      ;; Languages
+     systemd
      clojure
      emacs-lisp
      haskell
@@ -33,6 +38,10 @@
      yaml
      elixir
      elm
+     latex
+     ansible
+     terraform
+     csharp
      )
    dotspacemacs-additional-packages
    '(cython-mode
@@ -40,7 +49,8 @@
      lfe-mode)
    dotspacemacs-excluded-packages
    '(smartparens
-     yasnippet)
+     yasnippet
+     evil-escape)
    dotspacemacs-delete-orphan-packages t))
 
 (defun dotspacemacs/init ()
@@ -51,8 +61,8 @@
    dotspacemacs-startup-banner 'nil
    dotspacemacs-startup-lists '(recents projects bookmarks)
    dotspacemacs-startup-recent-list-size 5
-   dotspacemacs-themes '(material
-                         gruvbox
+   dotspacemacs-themes '(gruvbox
+                         material
                          spacemacs-light
                          spacemacs-dark
                          solarized-light
@@ -74,13 +84,18 @@
    dotspacemacs-smooth-scrolling t
    dotspacemacs-line-numbers t
    dotspacemacs-persistent-server t
+   rust-format-on-save t
    ))
 
 (defun dotspacemacs/user-init ()
   )
 
 (defun dotspacemacs/user-config ()
+  (custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
   (setq powerline-default-separator 'nil)
+  (setq spaceline-window-numbers-unicode 'nil)
+  (setq spaceline-workspace-numbers-unicode 'nil)
+  (setq dotspacemacs-mode-line-unicode-symbols 'nil)
   (setq x-meta-keysym 'super)
   (setq x-super-keysym 'meta)
   (require 'flycheck-cython)
@@ -91,8 +106,8 @@
   (setq mouse-wheel-progressive-speed nil)
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-  (spaceline-compile)
-)
+  (spaceline-compile))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

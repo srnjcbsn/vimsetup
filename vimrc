@@ -11,6 +11,9 @@ Plug 'nvie/vim-flake8'
 Plug 'tpope/vim-commentary'
 Plug 'justinmk/vim-dirvish'
 Plug 'mbbill/undotree'
+Plug 'luochen1990/rainbow'
+Plug 'wlangstroth/vim-racket'
+Plug 'katusk/vim-qkdb-syntax'
 call plug#end()
 
 filetype plugin indent on
@@ -52,3 +55,5 @@ hi ALEStyleErrorSign ctermfg=Yellow
 hi ALEStyleWarningSign ctermfg=Yellow
 hi ALEStyleError ctermfg=Blue
 hi ALEError ctermfg=Red
+
+let g:rainbow_active = 1
