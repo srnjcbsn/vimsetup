@@ -1,0 +1,23 @@
+[diff]
+    tool = meld
+[difftool]
+    prompt = false
+[difftool "meld"]
+    cmd = meld "$LOCAL" "$REMOTE"
+[user]
+	name = Søren Jacobsen
+	email = srnjcbsn@gmail.com
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[push]
+	default = current
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[alias]
+	co = checkout
+	lg = log --graph --oneline
+	la = log --graph --oneline --all
