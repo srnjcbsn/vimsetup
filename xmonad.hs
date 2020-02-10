@@ -8,11 +8,12 @@ import           XMonad.Layout.Renamed
 import           XMonad.Hooks.UrgencyHook     ( withUrgencyHook
                                               , NoUrgencyHook (..)
                                               )
-import           XMonad.Util.EZConfig         (additionalKeys)
+import           XMonad.Util.EZConfig         (additionalKeys, removeKeys)
 import           XMonad.Actions.WindowBringer (gotoMenu)
 import           XMonad.Hooks.EwmhDesktops    (ewmh)
 import           XMonad.Util.Run              (spawnPipe, hPutStrLn)
 import           Data.List                    (intercalate)
+import qualified XMonad.StackSet as W
 
 darkRed   = "#cc241d"
 red       = "#fb4934"
@@ -33,12 +34,12 @@ xmCommand :: String -> [String] -> Int -> String
 xmCommand name params delay = intercalate " " ["Run", name, show params, show delay]
 
 xmCPU = xmCommand "MultiCpu" params 10 where
-  params = [ "-t", "<fc=" ++ green ++ "><bar0><bar1><bar2><bar3></fc>"
+  params = [ "-t", "<fc=" ++ green ++ "><bar0><bar1><bar2><bar3><bar4><bar5><bar6><bar7><bar8><bar9><bar10><bar11><bar12><bar13><bar14><bar15></fc>"
            , "-L", "50", "-l", blue
            , "-H", "90", "-h", red
            , "-n", orange
            , "-W", "1"
-           , "-b", "●", "-f", "●"
+           , "-b", "░", "-f", "░"
            ]
 
 xmMem = xmCommand "Memory" params 10 where
@@ -99,7 +100,39 @@ myPP xmproc = xmobarPP { ppOutput = hPutStrLn xmproc
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
-myKeys = [((mod1Mask, xK_g), gotoMenu)]
+myKeys = [ ((mod1Mask, xK_g), gotoMenu)
+	  -- ((mod1Mask, xK_o), spawn "scrot /tmp/scrot.png && convert -scale 5% -scale 2000% /tmp/scrot.png /tmp/scrot.png && i3lock -i /tmp/scrot.png")
+	 , ((mod1Mask, xK_o), spawn "i3lock -t -i ~/Downloads/banan3.png")
+	 , ((mod4Mask, xK_j), windows W.focusDown)
+	 , ((mod4Mask, xK_k), windows W.focusUp)
+	 , ((mod4Mask .|. shiftMask, xK_j), windows W.swapDown)
+	 , ((mod4Mask .|. shiftMask, xK_k), windows W.swapUp)
+	 ]
+	 ++
+	 -- mod-[1..9] %! Switch to workspace N
+         -- mod-shift-[1..9] %! Move client to workspace N
+	 [((m .|. mod4Mask, k), windows $ f i)
+             | (i, k) <- zip (map show [1 .. 9]) [xK_1 .. xK_9]
+             , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+	-- Taken from https://wiki.haskell.org/Xmonad/Frequently_asked_questions (Screens are in wrong order)
+	 ++
+	 [((m .|. mod1Mask, key), screenWorkspace sc >>= flip whenJust (windows . f)) -- Replace 'mod1Mask' with your mod key of choice.
+		| (key, sc) <- zip [xK_w, xK_e, xK_r] [0, 2, 1] -- was [0..] *** change to match your screen order ***
+		, (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+
+rmKeys = [ (mod1Mask, xK_j)
+	 , (mod1Mask, xK_k)
+	 , (mod1Mask, xK_h)
+	 , (mod1Mask, xK_l)
+	 , (mod1Mask .|. shiftMask, xK_j)
+	 , (mod1Mask .|. shiftMask, xK_k)
+	 , (mod1Mask, xK_Tab)
+	 , (mod1Mask .|. shiftMask, xK_Tab)
+	 ]
+	 ++
+	 [ (mod1Mask, n) | n <- [xK_1 .. xK_9] ]
+	 ++
+	 [ (mod1Mask .|. shiftMask, n) | n <- [xK_1 .. xK_9] ]
 
 tabbedLayout :: Theme
 tabbedLayout = defaultTheme
@@ -124,7 +157,7 @@ myLayoutHook =    avoidStruts
                     dishes  = renamed [Replace "Wide"] (Tall 0 delta ratio)
 
 myConfig xmproc = ewmh $ desktopConfig
-    { terminal           = "urxvtcd"
+    { terminal           = "gnome-terminal" -- "alacritty" -- "urxvt"
     , modMask            = mod1Mask
     , layoutHook         = myLayoutHook
     , normalBorderColor  = bg1
@@ -133,3 +166,4 @@ myConfig xmproc = ewmh $ desktopConfig
     , startupHook        = setWMName "LG3D"
     , logHook            = dynamicLogWithPP $ myPP xmproc
     } `additionalKeys` myKeys
+    `removeKeys` rmKeys
