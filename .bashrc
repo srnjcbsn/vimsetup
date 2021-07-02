@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=20000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -117,17 +117,21 @@ if ! shopt -oq posix; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export PATH="/home/sja/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PATH="/home/sja/.pyenv/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
-source /home/sja/.config/broot/launcher/bash/br
+# source /home/sja/.config/broot/launcher/bash/br
 
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
 PROMPT_COMMAND=__prompt_command
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+alias history-update="history -c; history -r"
+
 trap "echo -n -e '\e[0m'" DEBUG
 
 __prompt_command() {
@@ -149,10 +153,10 @@ __prompt_command() {
 	local FWhi='\[\e[37m\]'
 
 	if [ $EXIT != 0 ]; then
-		PS1_PREFIX+="${FRed}● ${Rcol}"
+		PS1_PREFIX+="\[${FRed}\]● \[${Rcol}\]"
 		# PS1_PREFIX+="${Bold}${FRed}(${EXIT})${RCol} "
 	else
-		PS1_PREFIX+="${FGre}● ${Rcol}"
+		PS1_PREFIX+="\[${FGre}\]● \[${Rcol}\]"
 		# PS1_PREFIX+="${Bold}${FGre}(${EXIT})${RCol} "
 	fi
 
@@ -161,9 +165,14 @@ __prompt_command() {
 	GIT_PS1_SHOWUPSTREAM="auto"
 
 	# PS1_PREFIX+="${Bold}${BPur}${FWhi}\w${RCol}"
-	PS1_PREFIX+="${Bold}${FBlu}\w${RCol}"
+	PS1_PREFIX+="\[${Bold}${FBlu}\]\w\[${RCol}\]"
 
-	__git_ps1 "$PS1_PREFIX" " ${Bold}${FWhi}"
+	__git_ps1 "$PS1_PREFIX" " \[${Bold}${FWhi}\]"
 }
 source <(kubectl completion bash)
 EDITOR=nvim
+
+export PATH="/home/sja/.local/bin/:$PATH"
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
